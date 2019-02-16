@@ -4,18 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-  <title>Catch of the Day</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Catch of the Day: components edition!</title>
 </head>
 
 <body>
   <input type="checkbox" id="fold">
   <label for="fold">Fold</label>
   
-  <div id="main" role="application">
-    <store-picker></store-picker>
+    <catch-of-the-day role="app"></catch-of-the-day>
     <!-- This is where our React app will go -->
-  </div>
-  <script src="./components/storePicker.js"></script>
+
+  <script src="./components/app.js"></script>
 </body>
 
 </html>
