@@ -21,10 +21,10 @@
     "acorn": "^6.0.5",
     "acorn-jsx": "^5.0.1",
     "comp": "^1.10.0",
-    "npm": "^6.7.0",
+    "npm": "^6.8.0",
     "parcel-bundler": "*.*",
-    "react": "*.*",
-    "react-dom": "*.*",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "standard": "*.*"
   }
 }
