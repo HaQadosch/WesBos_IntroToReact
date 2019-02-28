@@ -7,8 +7,8 @@ export class StorePicker extends React.Component {
 
     this.goToStore = evt => {
       evt.preventDefault()
-      console.log('Store!!', { evt, name: this.storeNameInput.current.value })
-      this.props.history.push(`/store/${this.storeNameInput.current.value}`)
+      const storeName = this.storeNameInput.current.value
+      this.props.history.push(`/store/${storeName}`)
     }
     this.storeNameInput = React.createRef()
   }
