@@ -24,6 +24,7 @@
     "firebase": "^5.8.5",
     "npm": "^6.8.0",
     "parcel-bundler": "*.*",
+    "prop-types": "^15.7.2",
     "re-base": "^4.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",

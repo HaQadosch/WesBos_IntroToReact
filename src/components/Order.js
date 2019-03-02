@@ -3,9 +3,8 @@ import { formatPrice } from '../helpers'
 
 export class Order extends React.Component {
   renderOrder ([fishName, qty], index) {
-    const { fishes } = this.props
+    const { fishes = {} } = this.props
     const [ fish ] = Object.values(fishes).filter(fish => fish.name === fishName)
-    console.log({ fish })
 
     const sorry = <li key={index}>Sorry {fish ? fish.name : 'fish'} no longer available</li>
     const detail = fish ? (
@@ -19,12 +18,11 @@ export class Order extends React.Component {
   }
 
   render () {
-    const { fishes, order } = this.props
-    const orders = Object.entries(order)
+    const { fishes = {}, order = {} } = this.props
+    const orders = Object.entries(order || {})
 
-    const total = fishes && Object.values(fishes).length ? orders.reduce((accTotal, [fishName, qty]) => {
-      const [ fish ] = Object.values(fishes).filter(fish => fish.name === fishName)
-      console.log({ fishes, orders, fish })
+    const total = Object.values(fishes).length && orders ? orders.reduce((accTotal, [fishName, qty]) => {
+      const [ fish = { price: 0 } ] = Object.values(fishes).filter(fish => fish.name === fishName)
       const fishPrice = fish.status === 'available' ? fish.price : 0
       return accTotal + (fishPrice * qty)
     }, 0) : 0

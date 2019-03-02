@@ -33,6 +33,12 @@ export class App extends React.Component {
       fishes[key] = updatedFish
       this.setState({ fishes })
     }
+
+    this.deleteFish = key => {
+      const fishes = { ...this.state.fishes }
+      fishes[key] = null
+      this.setState({ fishes })
+    }
   }
 
   componentDidMount () {
@@ -60,7 +66,7 @@ export class App extends React.Component {
     return (
       <div className='catch-of-the-day'>
         <div className='menu'>
-          <Header tagline='Fresh Seafood Market' />
+          <Header tagline={'Fresh Seafood Market'} />
           <ul className='fishes'>
             {
               Object.values(this.state.fishes).map((fish, i) => <Fish key={i} addToOrder={this.addToOrder} details={fish} />)

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { formatPrice } from '../helpers'
 
 /**
@@ -29,4 +30,15 @@ export class Fish extends React.Component {
       </li>
     )
   }
+}
+
+Fish.propTypes = {
+  details: PropTypes.shape({
+    name: PropTypes.string,
+    image: PropTypes.string,
+    desc: PropTypes.string,
+    price: PropTypes.string,
+    status: PropTypes.string
+  }),
+  addToOrder: PropTypes.func
 }
