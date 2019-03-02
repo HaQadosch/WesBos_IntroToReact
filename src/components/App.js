@@ -4,23 +4,22 @@ import { Order } from './Order'
 import { Inventory } from './Inventory'
 import { fishes } from '../sample-fishes'
 import { Fish } from './Fish'
+import { base } from '../base'
 
 export class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      fishes: [],
+      fishes: {},
       order: {}
     }
     this.addFish = fish => {
-      const fishes = [...this.state.fishes]
-      fishes.push(fish)
+      const fishes = { ...this.state.fishes, [`fish${Date.now()}`]: fish }
       this.setState({ fishes })
-      console.log('🐟🐟🐟', { fish })
     }
 
     this.loadSample = _ => {
-      this.setState({ fishes: Object.values(fishes) })
+      this.setState({ fishes })
     }
 
     this.addToOrder = name => {
@@ -30,6 +29,28 @@ export class App extends React.Component {
     }
   }
 
+  componentDidMount () {
+    const { storeId } = this.props.match.params
+    const localStorageRef = window.localStorage.getItem(storeId)
+    console.log({ localStorageRef })
+
+    if (localStorageRef !== 'undefined') {
+      this.setState({ order: JSON.parse(localStorageRef) })
+    }
+    this.ref = base.syncState(`${storeId}/fishes`, {
+      context: this,
+      state: 'fishes'
+    })
+  }
+
+  componentDidUpdate () {
+    window.localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order))
+  }
+
+  componentWillUnmount () {
+    base.removeBinding(this.ref)
+  }
+
   render () {
     return (
       <div className='catch-of-the-day'>
@@ -37,11 +58,11 @@ export class App extends React.Component {
           <Header tagline='Fresh Seafood Market' />
           <ul className='fishes'>
             {
-              this.state.fishes.map((fish, i) => <Fish key={i} addToOrder={this.addToOrder} details={fish} />)
+              Object.values(this.state.fishes).map((fish, i) => <Fish key={i} addToOrder={this.addToOrder} details={fish} />)
             }
           </ul>
         </div>
-        <Order />
+        <Order order={this.state.order} fishes={Object.values(this.state.fishes)} />
         <Inventory addFish={this.addFish} loadSample={this.loadSample} />
       </div>
     )
