@@ -74,7 +74,7 @@ export class App extends React.Component {
           </ul>
         </div>
         <Order order={this.state.order} fishes={this.state.fishes} />
-        <Inventory updateFish={this.updateFish} addFish={this.addFish} loadSample={this.loadSample} fishes={this.state.fishes} />
+        <Inventory storeId={this.props.match.params.storeId} updateFish={this.updateFish} addFish={this.addFish} loadSample={this.loadSample} fishes={this.state.fishes} />
       </div>
     )
   }
