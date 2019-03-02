@@ -27,12 +27,17 @@ export class App extends React.Component {
       order[name] = order[name] + 1 || 1
       this.setState({ order })
     }
+
+    this.updateFish = (key, updatedFish) => {
+      const fishes = { ...this.state.fishes }
+      fishes[key] = updatedFish
+      this.setState({ fishes })
+    }
   }
 
   componentDidMount () {
     const { storeId } = this.props.match.params
     const localStorageRef = window.localStorage.getItem(storeId)
-    console.log({ localStorageRef })
 
     if (localStorageRef !== 'undefined') {
       this.setState({ order: JSON.parse(localStorageRef) })
@@ -62,8 +67,8 @@ export class App extends React.Component {
             }
           </ul>
         </div>
-        <Order order={this.state.order} fishes={Object.values(this.state.fishes)} />
-        <Inventory addFish={this.addFish} loadSample={this.loadSample} />
+        <Order order={this.state.order} fishes={this.state.fishes} />
+        <Inventory updateFish={this.updateFish} addFish={this.addFish} loadSample={this.loadSample} fishes={this.state.fishes} />
       </div>
     )
   }
