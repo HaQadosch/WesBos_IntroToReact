@@ -23,7 +23,7 @@
     "babel-polyfill": "^6.26.0",
     "comp": "^1.10.0",
     "firebase": "^5.8.5",
-    "npm": "^6.8.0",
+    "npm": "^6.13.4",
     "parcel-bundler": "*.*",
     "prop-types": "^15.7.2",
     "re": "^0.1.4",
