@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/HaQadosch/WesBos_IntroToReact#readme",
   "dependencies": {
-    "acorn": "^6.0.5",
+    "acorn": "^6.4.1",
     "acorn-jsx": "^5.0.1",
     "babel-polyfill": "^6.26.0",
     "comp": "^1.10.0",
